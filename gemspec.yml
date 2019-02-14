@@ -1,0 +1,18 @@
+name: ffi-wiring_pi
+version: 0.1.0
+summary: FFI bindings for wiringPi
+description: Ruby FFI bindings for the wiringPi library.
+license: MIT
+authors: Mark Huk
+email: mark.guk.e@gmail.com
+homepage: https://github.com/vimutter/ffi-wiring_pi
+has_yard: true
+
+requirements: wiringPi >= 2.46
+
+dependencies:
+  ffi: ~> 1.0
+
+development_dependencies:
+  rspec: ~> 3.8
+  yard: ~> 0.9.1

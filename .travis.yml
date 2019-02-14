@@ -1,0 +1,9 @@
+language: ruby
+before_install:
+  - git clone git://git.drogon.net/wiringPi
+  - cd wiringPi
+  - ./build
+  - gem install ffi
+rvm:
+  - 2.6.1
+script: rake test
