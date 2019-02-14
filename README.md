@@ -1,6 +1,6 @@
 # ffi-wiring-pi
 
-[![Gem Version](https://badge.fury.io/rb/ffi-wiring_pi.svg)](https://badge.fury.io/rb/ffi-wiring_pi)
+[![Gem Version](https://badge.fury.io/rb/ffi-wiring_pi.svg)](https://badge.fury.io/rb/ffi-wiring_pi)[![Build Status](https://travis-ci.org/vimutter/ffi-wiring_pi.svg?branch=master)](https://travis-ci.org/vimutter/ffi-wiring_pi)
 
 * [Source](https://github.com/vimutter/ffi-wiring_pi/)
 * [Issues](https://github.com/vimutter/ffi-wiring_pi/issues)
