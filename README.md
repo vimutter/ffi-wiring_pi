@@ -43,4 +43,4 @@ Setup GPIO:
 
 Copyright (c) 2019 Mark Huk
 
-See {file:LICENSE.txt} for license information.
+See [Licence](LICENSE.txt) for license information.
