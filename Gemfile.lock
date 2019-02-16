@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ffi-wiring_pi (0.1.0)
+    ffi-wiring_pi (0.1.6)
       ffi (~> 1.0)
 
 GEM
@@ -28,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 2.0)
   ffi-wiring_pi!
   rspec (~> 3.8)
   yard (~> 0.9.1)

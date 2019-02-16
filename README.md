@@ -29,6 +29,17 @@ Setup GPIO:
     pin = FFI::WiringPi::GPIO.get(0)
     pin.up!
 
+    # Or
+
+    extend FFI::WiringPi::GPIO
+
+    setup
+    pin = get 0
+    pin.up!
+
+    pin2 = get 1, INPUT
+    p pin2.value
+
 ## Requirements
 
 * [Ruby](http://ruby-lang.org/) >= 2.6.1 or
