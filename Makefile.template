@@ -1,0 +1,86 @@
+VERSION=$(shell cat version)
+DESTDIR?=/usr
+PREFIX?=/local
+
+LDCONFIG?=ldconfig
+
+ifneq ($V,1)
+Q ?= @
+endif
+
+STATIC=libws281x.a
+DYNAMIC=libws281x.so.$(VERSION)
+
+#DEBUG	= -g -O0
+DEBUG	= -O2
+CC	= gcc
+INCLUDE	= -I.
+DEFS	= -D_GNU_SOURCE
+CFLAGS	= $(DEBUG) $(DEFS) -Wformat=2 -Wall -Wextra -Winline $(INCLUDE) -pipe -fPIC
+#CFLAGS	= $(DEBUG) $(DEFS) -Wformat=2 -Wall -Wextra -Wconversion -Winline $(INCLUDE) -pipe -fPIC
+
+LIBS    = -lm -lpthread -lrt -lcrypt
+
+###############################################################################
+
+SRC	=	ws2811.c	\
+      pwm.c		\
+      pcm.c  \
+      dma.c \
+      rpihw.c \
+      mailbox.c
+
+
+HEADERS =	$(shell ls *.h)
+
+OBJ	=	$(SRC:.c=.o)
+
+all:		$(DYNAMIC)
+
+.PHONY:	static
+static:
+		$Q cat noMoreStatic
+
+$(DYNAMIC):	$(OBJ)
+	$Q echo "[Link (Dynamic)]"
+	$Q $(CC) -shared -Wl,-soname,libws281x.so -o libws281x.so.$(VERSION) $(LIBS) $(OBJ)
+
+.c.o:
+	$Q echo [Compile] $<
+	$Q $(CC) -c $(CFLAGS) $< -o $@
+
+
+.PHONY:	clean
+clean:
+	$Q echo "[Clean]"
+	$Q rm -f $(OBJ) $(OBJ_I2C) *~ core tags Makefile.bak libws281x.*
+
+.PHONY:	tags
+tags:	$(SRC)
+	$Q echo [ctags]
+	$Q ctags $(SRC)
+
+
+.PHONY:	install
+install:	$(DYNAMIC)
+	$Q echo "[Install Headers]"
+	$Q install -m 0755 -d						$(DESTDIR)$(PREFIX)/include
+	$Q install -m 0644 $(HEADERS)					$(DESTDIR)$(PREFIX)/include
+	$Q echo "[Install Dynamic Lib]"
+	$Q install -m 0755 -d						$(DESTDIR)$(PREFIX)/lib
+	$Q install -m 0755 libws281x.so.$(VERSION)			$(DESTDIR)$(PREFIX)/lib/libws281x.so.$(VERSION)
+	$Q ln -sf $(DESTDIR)$(PREFIX)/lib/libws281x.so.$(VERSION)	$(DESTDIR)/lib/libws281x.so
+	$Q $(LDCONFIG)
+
+.PHONY:	uninstall
+uninstall:
+	$Q echo "[UnInstall]"
+	$Q cd $(DESTDIR)$(PREFIX)/include/ && rm -f $(HEADERS)
+	$Q cd $(DESTDIR)$(PREFIX)/lib/     && rm -f libws281x.*
+	$Q $(LDCONFIG)
+
+
+.PHONY:	depend
+depend:
+	makedepend -Y $(SRC) $(SRC_I2C)
+

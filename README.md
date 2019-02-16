@@ -12,6 +12,7 @@ Ruby FFI bindings for the [wiringPi](http://wiringpi.com) library.
 ## Features
 
 * Can setup and work with GPIO
+* In progress: bindings to rpi_ws281x library to work with NeoPixel (ws2811 & ws2812) LED strips
 
 ## Examples
 
@@ -45,6 +46,7 @@ Setup GPIO:
 * [Ruby](http://ruby-lang.org/) >= 2.6.1 or
 * [wiringPi](http://wiringpi.com/download-and-install/) >= 2.46
 * [ffi](http://github.com/ffi/ffi) ~> 1.0
+* [rpi_ws281x](https://github.com/jgarff/rpi_ws281x)
 
 ## Install
 
