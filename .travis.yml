@@ -4,6 +4,7 @@ before_install:
   - cd wiringPi
   - ./build
   - gem install ffi
+  - gem install bundler:2.0.1
 rvm:
   - 2.6.1
 script: rake test
