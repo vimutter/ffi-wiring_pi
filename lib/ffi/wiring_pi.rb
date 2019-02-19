@@ -11,3 +11,4 @@ module FFI
 end
 
 require 'ffi/wiring_pi/gpio'
+require 'ffi/wiring_pi/ssoft_pwm'
