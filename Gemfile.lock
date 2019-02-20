@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ffi-wiring_pi (0.1.6)
+    ffi-wiring_pi (0.3.0)
       ffi (~> 1.0)
 
 GEM
