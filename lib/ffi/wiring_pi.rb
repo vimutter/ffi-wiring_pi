@@ -12,3 +12,4 @@ end
 
 require 'ffi/wiring_pi/gpio'
 require 'ffi/wiring_pi/soft_pwm'
+require 'ffi/wiring_pi/soft_tone'
