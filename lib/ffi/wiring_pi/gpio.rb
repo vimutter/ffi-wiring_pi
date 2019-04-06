@@ -67,6 +67,16 @@ module FFI::WiringPi::GPIO
     digital_write(pin, state ? HIGH : LOW)
   end
 
+  # This returns the value read on the supplied analog input pin.
+  # You will need to register additional analog modules to enable this function
+  # for devices such as the Gertboard, quick2Wire analog board, etc.
+  attach_function :analog_read, :analogRead, [:int], :int
+
+  # This writes the given value to the supplied analog pin.
+  # You will need to register additional analog modules to enable this function
+  # for devices such as the Gertboard.
+  attach_function :analog_write, :analogWrite, [:int, :int], :void
+
   # Sets pin to HIGH state
   #
   # @param pin [Integer] pin position (depends on setup mode)
