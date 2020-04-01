@@ -1,5 +1,5 @@
 name: ffi-wiring_pi
-version: 0.6.0
+version: 1.0.2
 summary: FFI bindings for wiringPi
 description: Ruby FFI bindings for the wiringPi library.
 license: MIT
@@ -15,6 +15,6 @@ dependencies:
 
 development_dependencies:
   rspec: ~> 3.8
-  rake: ~> 12.3.2
-  yard: ~> 0.9.1
+  rake: ">= 12.33"
+  yard: ">= 0.9.20"
   bundler: ~> 2.0
