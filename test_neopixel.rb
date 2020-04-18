@@ -10,15 +10,22 @@ matrix[:channel0][:brightness] = 255
 matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::WS2811_STRIP_RGB
 
 count = 44 * 11
+
+class Pixel < FFI::Struct
+  layout  :value, :u_int32_t
+end
+
 raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
-raw_pixels[0] = 0x00201000
-raw_pixels[1] = 0x00202020
+pixels = []
+pixels << Pixel.new(raw_pixels + 0 * Pixel.size )
+pixels << Pixel.new(raw_pixels + 1 * Pixel.size )
+pixels[0].value = 0x00201000
+pixels[1].value = 0x00202020
 
 
 FFI::WiringPi::Neopixel.init(matrix)
-matrix[:channel0][:leds][0] = raw_pixels[0]
-matrix[:channel0][:leds][1] = raw_pixels[1]
-
+Pixel.new(matrix[:channel0][:leds]).value = pixels[0].value
+Pixel.new(matrix[:channel0][:leds] + 1 * Pixel.size).value = pixels[1].value
 
 FFI::WiringPi::Neopixel.render(matrix)
 sleep 10
