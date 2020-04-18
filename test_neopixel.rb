@@ -7,7 +7,7 @@ matrix[:channel0][:gpionum] = 18
 matrix[:channel0][:count] = 44 * 11 # width * height
 matrix[:channel0][:invert] = 0
 matrix[:channel0][:brightness] = 255
-matrix[:channel0][:strip_type] = FFi::WiringPi::Neopixel::WS2811_STRIP_RGB
+matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::WS2811_STRIP_RGB
 
 count = 44 * 11
 raw_pixels = FFI::MemoryPointer.new(:uint32_t, count)
