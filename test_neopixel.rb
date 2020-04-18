@@ -19,13 +19,13 @@ raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 pixels = []
 pixels << Pixel.new(raw_pixels + 0 * Pixel.size )
 pixels << Pixel.new(raw_pixels + 1 * Pixel.size )
-pixels[0].value = 0x00201000
-pixels[1].value = 0x00202020
+pixels[0][:value] = 0x00201000
+pixels[1][:value] = 0x00202020
 
 
 FFI::WiringPi::Neopixel.init(matrix)
-Pixel.new(matrix[:channel0][:leds]).value = pixels[0].value
-Pixel.new(matrix[:channel0][:leds] + 1 * Pixel.size).value = pixels[1].value
+Pixel.new(matrix[:channel0][:leds])[:value] = pixels[0][:value]
+Pixel.new(matrix[:channel0][:leds] + 1 * Pixel.size)[:value] = pixels[1][:value]
 
 FFI::WiringPi::Neopixel.render(matrix)
 sleep 10
