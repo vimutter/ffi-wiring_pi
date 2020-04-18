@@ -10,7 +10,7 @@ matrix[:channel0][:brightness] = 255
 matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::WS2811_STRIP_RGB
 
 count = 44 * 11
-raw_pixels = FFI::MemoryPointer.new(:uint32_t, count)
+raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 raw_pixels[0] = 0x00201000
 raw_pixels[1] = 0x00202020
 
