@@ -14,12 +14,14 @@ count = 44 * 11
 class Pixel < FFI::Struct
   layout  :value, :u_int32_t
 end
+white = 0x00202020
+red = 0x00200000
 
 raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 pixels = []
 count.times do |i|
   pixels << Pixel.new(raw_pixels + i * Pixel.size )
-  pixels[i][:value] = 0x00202020
+  pixels[i][:value] = (i % 2 == 0) ? white : red
 end
 
 FFI::WiringPi::Neopixel.init(matrix)
