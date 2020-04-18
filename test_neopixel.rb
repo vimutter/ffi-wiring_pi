@@ -7,7 +7,8 @@ matrix[:channel0][:gpionum] = 18
 matrix[:channel0][:count] = 44 * 11 # width * height
 matrix[:channel0][:invert] = 0
 matrix[:channel0][:brightness] = 255
-matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::WS2811_STRIP_RGB
+#matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::WS2812_STRIP
+matrix[:channel0][:strip_type] = FFI::WiringPi::Neopixel::SK6812W_STRIP
 
 count = 44 * 11
 
@@ -15,7 +16,7 @@ class Pixel < FFI::Struct
   layout  :value, :u_int32_t
 end
 white = 0x00202020
-red = 0x00200000
+red = 0xffff0000 # Experimental
 
 raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 pixels = []
