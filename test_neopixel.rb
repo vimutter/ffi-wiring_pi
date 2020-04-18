@@ -17,15 +17,15 @@ end
 
 raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 pixels = []
-pixels << Pixel.new(raw_pixels + 0 * Pixel.size )
-pixels << Pixel.new(raw_pixels + 1 * Pixel.size )
-pixels[0][:value] = 0x00201000
-pixels[1][:value] = 0x00202020
-
+count.times do |i|
+  pixels << Pixel.new(raw_pixels + i * Pixel.size )
+  pixels[i][:value] = 0x00202020
+end
 
 FFI::WiringPi::Neopixel.init(matrix)
-Pixel.new(matrix[:channel0][:leds])[:value] = pixels[0][:value]
-Pixel.new(matrix[:channel0][:leds] + 1 * Pixel.size)[:value] = pixels[1][:value]
+count.times do |i|
+  Pixel.new(matrix[:channel0][:leds] + i * Pixel.size)[:value] = pixels[i][:value]
+end
 
 FFI::WiringPi::Neopixel.render(matrix)
 sleep 10
