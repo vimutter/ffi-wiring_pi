@@ -1,3 +1,4 @@
+# 1.1.0 Test version of RpiWS281x bindings
 # 0.6.0 Added analog_read/analog_write
 # 0.5.0 Added Pcf8591 mudule (ADC/DAC)
 # 0.4.0 Added Software Tone PWM functions wrappers
