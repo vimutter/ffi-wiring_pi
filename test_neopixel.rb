@@ -15,8 +15,8 @@ count = 44 * 11
 class Pixel < FFI::Struct
   layout  :value, :u_int32_t
 end
-white = 0x00202020
-red = 0x20200000 # Experimental
+white = 0xffffffff
+red = 0x20ff0000 # Experimental
 
 raw_pixels = FFI::MemoryPointer.new(:u_int32_t, count)
 pixels = []
